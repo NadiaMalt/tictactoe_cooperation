@@ -43,24 +43,40 @@ def play_game():
 
 #single turn of the player
 def players_move():
+    global board
     position_player = int(input("Chose a position between 1-20:"))
-    board_new=board[:position_player-1]+board[position_player-1].replace('_','X')+board[position_player:] 
-    print(board_new)
-
+    board=board[:position_player-1]+board[position_player-1].replace('_','X')+board[position_player:] 
+    print(board)
+    
+#sinle turn of the computer
 from random import randrange
-
 def pc_move():
-    position_pc = randrange(1,20)
-    board_new=board[:position_pc-1]+board[position_pc-1].replace('_','O')+board[position_pc:]
-    print(board_new)
+    global board
+    position_pc = randrange(1,20)     
+    while board[position_pc-1] != "_":
+        print("pc must give position again")
+        position_pc = randrange(1,20)                
+    if board[position_pc-1] == "_":
+        board=board[:position_pc-1]+board[position_pc-1].replace('_','O')+board[position_pc:]
+        
+    print(board)
 
 def evaluate_game():
   check_if_win()
   check_if_tie()
 
 def check_if_win():
+    # set up global variable in the function
+    global winner
   #check rows
-    return
+  #for i in range (1,19):
+    
+  #if row_winner()
+  #      winner = row_winner()
+  #else:
+   #     winner = None
+    
+  #  return
 
 def check_if_tie():
   return

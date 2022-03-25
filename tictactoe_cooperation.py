@@ -31,9 +31,8 @@ def play_game():
   while game_still_going: 
 
     players_move()
-
+    pc_move()
     evaluate_game()
-
     flip_player()
 
 # the game has ended
@@ -42,12 +41,18 @@ def play_game():
   elif winner == None:
     print("it is a tie")
 
+#single turn of the player
 def players_move():
-  position_player = int(input("Chose a position between 1-20:"))
+    position_player = int(input("Chose a position between 1-20:"))
+    board_new=board[:position_player-1]+board[position_player-1].replace('_','X')+board[position_player:] 
+    print(board_new)
 
-  board_new=board[:position_player-1]+board[position_player-1].replace('_','X')+board[position_player:]
- 
-  print(board_new)
+from random import randrange
+
+def pc_move():
+    position_pc = randrange(1,20)
+    board_new=board[:position_pc-1]+board[position_pc-1].replace('_','O')+board[position_pc:]
+    print(board_new)
 
 def evaluate_game():
   check_if_win()

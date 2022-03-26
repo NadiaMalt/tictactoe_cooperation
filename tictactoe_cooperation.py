@@ -24,6 +24,7 @@ winner = None
 def display_board():
   print(board)
 
+
 def play_game():
   # prints the initial board
   display_board()
@@ -37,7 +38,7 @@ def play_game():
 
 # the game has ended
   if winner == "X" or winner == "O":
-    print(winner) + "has won and is great"
+    print(winner, "has won and is great")
   elif winner == None:
     print("it is a tie")
 
@@ -45,11 +46,19 @@ def play_game():
 def players_move():
     global board
     position_player = int(input("Chose a position between 1-20:"))
-    board=board[:position_player-1]+board[position_player-1].replace('_','X')+board[position_player:] 
+    while position_player < 1 or position_player > 20 or board[position_player-1] != "_":
+      if position_player < 1 or position_player > 20:
+        print("can you please give a position in the correct range? ;)")
+      elif board[position_player-1] != "_":
+        print("position already taken")
+      position_player = int(input("Chose a position between 1-20:"))
+    else:
+      board=board[:position_player-1]+board[position_player-1].replace('_','X')+board[position_player:] 
     print(board)
     
-#sinle turn of the computer
+#single turn of the computer
 from random import randrange
+
 def pc_move():
     global board
     position_pc = randrange(1,20)     
@@ -68,16 +77,22 @@ def evaluate_game():
 def check_if_win():
     # set up global variable in the function
     global winner
+    global game_still_going
   #check rows
-  #for i in range (1,19):
+    for i in range (1,19):
+      if board[i-1] == board[i] == board[i+1] == "X":
+        winner = "X"
+        game_still_going = False
+        return winner, game_still_going
+      elif board[i-1] == board[i] == board[i+1] == "O":
+        winner = "O"
+        game_still_going = False
+        return winner, game_still_going
+      else:
+        winner = None
+        game_still_going = True
+    return winner, game_still_going
     
-  #if row_winner()
-  #      winner = row_winner()
-  #else:
-   #     winner = None
-    
-  #  return
-
 def check_if_tie():
   return
 

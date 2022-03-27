@@ -1,13 +1,10 @@
 # board
 # display board
 # play game
-# handle turn
 # check win
   # check rows
 # check tie
   # if the board is full and there is no winner
-
-
 
 # board
 print("lets start this game")

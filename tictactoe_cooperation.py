@@ -31,6 +31,7 @@ def play_game():
   while game_still_going: 
 
     players_move()
+    evaluate_game()
     pc_move()
     evaluate_game()
     
